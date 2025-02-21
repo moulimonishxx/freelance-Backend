@@ -6,9 +6,9 @@ const nodemailer = require("nodemailer");
 
 const app = express();
 
-// CORS Configuration (Allow live frontend)
+// CORS Configuration (Allow requests from Netlify frontend)
 const corsOptions = {
-    origin: ["https://sample-brookbytes.netlify.app"], // Local + Live Frontend
+    origin: ["https://sample-brookbytes.netlify.app"], // Allow live frontend
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 };
@@ -40,7 +40,7 @@ app.post("/send-email", async (req, res) => {
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: process.env.RECEIVER_EMAIL || process.env.EMAIL_USER, // Change to your receiver email
+        to: process.env.RECEIVER_EMAIL || process.env.EMAIL_USER, // Receiver Email
         subject: `New Contact Form Submission from ${name}`,
         html: `
             <h2>New Contact Form Submission</h2>
@@ -63,8 +63,8 @@ app.post("/send-email", async (req, res) => {
     }
 });
 
-// Start Server
-const PORT = process.env.PORT || 5000;
+// ✅ Fix: Use Render-assigned port dynamically
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
 });

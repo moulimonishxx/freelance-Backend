@@ -8,7 +8,7 @@ const app = express();
 
 // CORS Configuration (Allow live frontend)
 const corsOptions = {
-    origin: ["http://localhost:3000", "https://brookbytes.netlify.app"], // Local + Live Frontend
+    origin: ["http://localhost:3000", "https://sample-brookbytes.netlify.app"], // Local + Live Frontend
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 };
